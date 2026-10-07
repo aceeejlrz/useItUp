@@ -1,0 +1,217 @@
+<resources>
+    <string name="app_name">UseItUp</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_pantry">Pantry</string>
+    <string name="nav_recipes">Recipes</string>
+    <string name="nav_shopping">Shopping</string>
+
+    <!-- Shared -->
+    <string name="action_settings">Settings &amp; About</string>
+    <string name="action_search">Search</string>
+    <string name="undo">Undo</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="coming_soon">Coming soon</string>
+    <string name="list_separator">", "</string>
+    <string name="list_last_separator">" and "</string>
+
+    <!-- Pantry -->
+    <string name="pantry_title">My Pantry</string>
+    <string name="pantry_search_hint">Search pantry</string>
+    <string name="banner_find_recipes">Find recipes</string>
+    <plurals name="banner_soon_title">
+        <item quantity="one">%d item expires soon</item>
+        <item quantity="other">%d items expire soon</item>
+    </plurals>
+    <plurals name="banner_expired_title">
+        <item quantity="one">%d item has expired</item>
+        <item quantity="other">%d items have expired</item>
+    </plurals>
+    <plurals name="banner_window">
+        <item quantity="one">Within %d day</item>
+        <item quantity="other">Within %d days</item>
+    </plurals>
+    <string name="banner_expired_suffix">%1$s · %2$d expired</string>
+    <string name="category_all">All</string>
+    <string name="pantry_empty_title">Your pantry is empty</string>
+    <string name="pantry_empty_body">Tap + to add your first item</string>
+    <string name="pantry_no_match_query">No items match “%s”</string>
+    <string name="pantry_no_match_category">Nothing in %s yet</string>
+    <string name="item_detail_format">%1$s · %2$s</string>
+    <string name="item_deleted">Item deleted</string>
+    <string name="find_recipes_with">Find recipes with %s</string>
+    <string name="add_item">Add item</string>
+    <string name="swipe_delete">Delete</string>
+
+    <!-- Expiry labels -->
+    <string name="status_expired_yesterday">Expired yesterday</string>
+    <plurals name="status_expired_days_ago">
+        <item quantity="one">Expired %d day ago</item>
+        <item quantity="other">Expired %d days ago</item>
+    </plurals>
+    <string name="status_expires_today">Expires today</string>
+    <string name="status_expires_tomorrow">Expires tomorrow</string>
+    <plurals name="status_days_left">
+        <item quantity="one">%d day left</item>
+        <item quantity="other">%d days left</item>
+    </plurals>
+    <plurals name="status_weeks_left">
+        <item quantity="one">%d week left</item>
+        <item quantity="other">%d weeks left</item>
+    </plurals>
+    <plurals name="status_months_left">
+        <item quantity="one">%d month left</item>
+        <item quantity="other">%d months left</item>
+    </plurals>
+    <plurals name="helper_expires_in">
+        <item quantity="one">Expires in %d day</item>
+        <item quantity="other">Expires in %d days</item>
+    </plurals>
+
+    <!-- Add / Edit item -->
+    <string name="add_item_title">Add item</string>
+    <string name="edit_item_title">Edit item</string>
+    <string name="scan_barcode">Scan barcode</string>
+    <string name="scan_barcode_description">Scan barcode, coming soon</string>
+    <string name="scan_barcode_later">Barcode scanning is planned for a later version.</string>
+    <string name="or_enter_details">or enter the details</string>
+    <string name="field_name">Item name *</string>
+    <string name="field_quantity">Quantity *</string>
+    <string name="field_unit">Unit</string>
+    <string name="field_category">Category</string>
+    <string name="field_expiry">Expiry date *</string>
+    <string name="error_name_required">Enter an item name</string>
+    <string name="error_quantity">Enter a quantity greater than 0</string>
+    <string name="error_expiry_required">Choose an expiry date</string>
+    <string name="save_item">Save item</string>
+    <string name="delete_item">Delete item</string>
+    <string name="delete_dialog_title">Delete %s?</string>
+    <string name="delete_dialog_message">%s will be removed from your pantry. This can’t be undone.</string>
+    <string name="select_date">Select date</string>
+    <string name="date_format_field">MMM d, yyyy</string>
+
+    <!-- Recipes -->
+    <string name="recipes_title">Recipes</string>
+    <string name="tab_search">Search</string>
+    <string name="tab_saved">Saved</string>
+    <string name="ingredient_hint">Add an ingredient…</string>
+    <string name="remove_ingredient">Remove %s</string>
+    <string name="expiring_soon_label">Expiring soon:</string>
+    <string name="add_ingredient_to_search">Add %s to the search</string>
+    <plurals name="recipes_summary">
+        <item quantity="one">%d recipe · best matches first</item>
+        <item quantity="other">%d recipes · best matches first</item>
+    </plurals>
+    <string name="recipes_searching">Searching TheMealDB…</string>
+    <plurals name="saved_summary">
+        <item quantity="one">%d saved recipe · available offline</item>
+        <item quantity="other">%d saved recipes · available offline</item>
+    </plurals>
+    <plurals name="match_badge">
+        <item quantity="one">%1$d of %2$d ingredient</item>
+        <item quantity="other">%1$d of %2$d ingredients</item>
+    </plurals>
+    <string name="offline_title">You’re offline</string>
+    <string name="offline_body">Saved recipes still work. Connect to the internet to search for new ones.</string>
+    <string name="retry">Retry</string>
+    <string name="open_saved">Open saved recipes</string>
+    <string name="empty_title">No recipes found</string>
+    <string name="empty_body">No recipes use %s. Check the spelling or try another ingredient.</string>
+    <string name="clear_ingredients">Clear ingredients</string>
+    <string name="prompt_title">Search by ingredient</string>
+    <string name="prompt_body">Add an ingredient above, or tap one that expires soon.</string>
+    <string name="saved_empty_title">No saved recipes yet</string>
+    <string name="saved_empty_body">Tap the bookmark on a recipe to keep it for offline use.</string>
+    <string name="quoted">“%s”</string>
+    <string name="quoted_or">" or "</string>
+
+    <!-- Recipe detail -->
+    <string name="recipe_title">Recipe</string>
+    <string name="save_recipe">Save recipe</string>
+    <string name="unsave_recipe">Remove from saved recipes</string>
+    <string name="recipe_saved">Saved for offline use</string>
+    <string name="recipe_unsaved">Removed from saved recipes</string>
+    <string name="watch_video">Watch video</string>
+    <string name="recipe_meta">%1$s · %2$s</string>
+    <string name="ingredients_header">Ingredients</string>
+    <string name="ingredients_in_pantry">%1$d of %2$d in your pantry</string>
+    <string name="in_pantry">In pantry</string>
+    <string name="missing">Missing</string>
+    <string name="ingredient_measure">" · %s"</string>
+    <plurals name="add_missing">
+        <item quantity="one">Add %d missing to shopping list</item>
+        <item quantity="other">Add %d missing to shopping list</item>
+    </plurals>
+    <string name="added_view_list">Added · View shopping list</string>
+    <string name="have_everything">You have everything for this recipe</string>
+    <plurals name="items_added">
+        <item quantity="one">%d item added</item>
+        <item quantity="other">%d items added</item>
+    </plurals>
+    <string name="view_list">View list</string>
+    <string name="instructions_header">Instructions</string>
+    <string name="recipe_source">Sample recipe for the prototype. The app will load recipes from TheMealDB.</string>
+
+    <!-- Shopping list -->
+    <string name="shopping_title">Shopping list</string>
+    <string name="clear_checked">Clear checked</string>
+    <string name="shopping_hint">Add an item…</string>
+    <string name="add">Add</string>
+    <string name="to_buy_header">To buy · %d</string>
+    <string name="in_cart_header">In cart · %d</string>
+    <string name="move_to_pantry">Move checked to pantry</string>
+    <string name="move_to_pantry_description">Move checked to pantry, coming soon</string>
+    <string name="move_to_pantry_later">Moving items to the pantry is planned for a later version.</string>
+    <string name="shopping_empty_title">Your list is empty</string>
+    <string name="shopping_empty_body">Add items above, or add a recipe’s missing ingredients.</string>
+    <string name="for_recipe">for %s</string>
+    <string name="note_for_recipe">%1$s · for %2$s</string>
+    <string name="item_removed">Item removed</string>
+    <plurals name="cleared_checked">
+        <item quantity="one">%d checked item cleared</item>
+        <item quantity="other">%d checked items cleared</item>
+    </plurals>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="pref_cat_reminders">Expiry reminders</string>
+    <string name="pref_daily_title">Daily reminder</string>
+    <string name="pref_daily_summary">Notify me about food that expires soon</string>
+    <string name="pref_window_title">Alert window</string>
+    <string name="pref_time_title">Reminder time</string>
+    <string name="pref_time_summary">Around %s</string>
+    <string name="pref_permission_title">Notification permission</string>
+    <string name="permission_allowed">Allowed</string>
+    <string name="permission_blocked">Notifications are blocked</string>
+    <string name="manage">Manage</string>
+    <string name="pref_test_title">Send a test reminder</string>
+    <string name="pref_test_summary">Prototype only: shows the expiry notification now</string>
+    <string name="pref_cat_about">About</string>
+    <string name="about_version_title">UseItUp %s</string>
+    <string name="about_version_summary">COMP3074 Final Project · Team 15</string>
+    <string name="about_team_title">Team members</string>
+    <string name="about_team_summary">Jezrel Dela Cruz · Benz Stephen Farinas\nJared-Ian Duldulao · Cem Dudu</string>
+    <string name="about_sources_title">Data sources</string>
+    <string name="about_sources_summary">Recipes: TheMealDB · Product data: Open Food Facts (ODbL)</string>
+    <string name="test_reminder_sent">Reminder sent. Pull down the notification shade to see it.</string>
+    <plurals name="test_reminder_none">
+        <item quantity="one">Nothing expires within %d day.</item>
+        <item quantity="other">Nothing expires within %d days.</item>
+    </plurals>
+    <string name="permission_rationale">Allow notifications to get a reminder before food expires.</string>
+    <string name="select_time">Select reminder time</string>
+
+    <!-- Notifications -->
+    <string name="channel_name">Expiry alerts</string>
+    <string name="channel_description">A daily reminder about food that expires soon</string>
+    <plurals name="notif_title">
+        <item quantity="one">%1$d item expires within %2$s</item>
+        <item quantity="other">%1$d items expire within %2$s</item>
+    </plurals>
+    <plurals name="day_count">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <string name="notif_text">%s – tap to find recipes</string>
+</resources>

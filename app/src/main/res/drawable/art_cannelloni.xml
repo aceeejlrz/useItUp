@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Illustrated stand-in for a TheMealDB photo. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="100dp"
+    android:viewportWidth="160"
+    android:viewportHeight="100">
+
+    <path
+        android:pathData="M 0 0 h 160 v 100 h -160 Z"
+        android:fillColor="#FFECE1D2" />
+    <path
+        android:pathData="M 30 12 h 100 a 14 14 0 0 1 14 14 v 48 a 14 14 0 0 1 -14 14 h -100 a 14 14 0 0 1 -14 -14 v -48 a 14 14 0 0 1 14 -14 Z"
+        android:fillColor="#FFFAF7F1" />
+    <path
+        android:pathData="M 33 20 h 94 a 9 9 0 0 1 9 9 v 42 a 9 9 0 0 1 -9 9 h -94 a 9 9 0 0 1 -9 -9 v -42 a 9 9 0 0 1 9 -9 Z"
+        android:fillColor="#FFC8452A" />
+    <path
+        android:pathData="M 35 25 h 90 a 5 5 0 0 1 5 5 v 0 a 5 5 0 0 1 -5 5 h -90 a 5 5 0 0 1 -5 -5 v 0 a 5 5 0 0 1 5 -5 Z"
+        android:fillColor="#FFF0DDB4" />
+    <path
+        android:pathData="M 35 38 h 90 a 5 5 0 0 1 5 5 v 0 a 5 5 0 0 1 -5 5 h -90 a 5 5 0 0 1 -5 -5 v 0 a 5 5 0 0 1 5 -5 Z"
+        android:fillColor="#FFEDD7A9" />
+    <path
+        android:pathData="M 35 51 h 90 a 5 5 0 0 1 5 5 v 0 a 5 5 0 0 1 -5 5 h -90 a 5 5 0 0 1 -5 -5 v 0 a 5 5 0 0 1 5 -5 Z"
+        android:fillColor="#FFF0DDB4" />
+    <path
+        android:pathData="M 35 64 h 90 a 5 5 0 0 1 5 5 v 0 a 5 5 0 0 1 -5 5 h -90 a 5 5 0 0 1 -5 -5 v 0 a 5 5 0 0 1 5 -5 Z"
+        android:fillColor="#FFEDD7A9" />
+    <path
+        android:pathData="M 44 43 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0 Z"
+        android:fillColor="#FFFFFDF6" />
+    <path
+        android:pathData="M 80.5 30 a 3.5 3.5 0 1 0 7 0 a 3.5 3.5 0 1 0 -7 0 Z"
+        android:fillColor="#FFFFFDF6" />
+    <path
+        android:pathData="M 100 56 a 4 4 0 1 0 8 0 a 4 4 0 1 0 -8 0 Z"
+        android:fillColor="#FFFFFDF6" />
+    <path
+        android:pathData="M 62.5 69 a 3.5 3.5 0 1 0 7 0 a 3.5 3.5 0 1 0 -7 0 Z"
+        android:fillColor="#FFFFFDF6" />
+    <group android:rotation="-20" android:pivotX="60" android:pivotY="31">
+        <path
+            android:pathData="M 56 31 a 4 2.4 0 1 0 8 0 a 4 2.4 0 1 0 -8 0 Z"
+            android:fillColor="#FF3F7A32" />
+    </group>
+    <group android:rotation="25" android:pivotX="96" android:pivotY="44">
+        <path
+            android:pathData="M 92 44 a 4 2.4 0 1 0 8 0 a 4 2.4 0 1 0 -8 0 Z"
+            android:fillColor="#FF3F7A32" />
+    </group>
+    <group android:rotation="10" android:pivotX="40" android:pivotY="62">
+        <path
+            android:pathData="M 36 62 a 4 2.4 0 1 0 8 0 a 4 2.4 0 1 0 -8 0 Z"
+            android:fillColor="#FF3F7A32" />
+    </group>
+    <path
+        android:pathData="M 114 70 a 4 2.4 0 1 0 8 0 a 4 2.4 0 1 0 -8 0 Z"
+        android:fillColor="#FF3F7A32" />
+
+</vector>

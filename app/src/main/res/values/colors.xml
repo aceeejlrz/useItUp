@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material 3 colour roles, light theme. Primary is the fresh green from the design brief. -->
+    <color name="md_primary">#2E7D5B</color>
+    <color name="md_on_primary">#FFFFFF</color>
+    <color name="md_primary_container">#B7F0D2</color>
+    <color name="md_on_primary_container">#0B4F36</color>
+    <color name="md_secondary">#4D6356</color>
+    <color name="md_on_secondary">#FFFFFF</color>
+    <color name="md_secondary_container">#CFE9DA</color>
+    <color name="md_on_secondary_container">#0D3523</color>
+    <color name="md_tertiary">#3D6373</color>
+    <color name="md_on_tertiary">#FFFFFF</color>
+    <color name="md_tertiary_container">#C1E8FC</color>
+    <color name="md_on_tertiary_container">#001F29</color>
+    <color name="md_error">#BA1A1A</color>
+    <color name="md_on_error">#FFFFFF</color>
+    <color name="md_error_container">#FFDAD6</color>
+    <color name="md_on_error_container">#93000A</color>
+    <color name="md_background">#F6FBF7</color>
+    <color name="md_on_background">#171D1A</color>
+    <color name="md_surface">#F6FBF7</color>
+    <color name="md_on_surface">#171D1A</color>
+    <color name="md_surface_variant">#DCE5DD</color>
+    <color name="md_on_surface_variant">#404943</color>
+    <color name="md_outline">#707973</color>
+    <color name="md_outline_variant">#BFC9C1</color>
+    <color name="md_inverse_surface">#2C322E</color>
+    <color name="md_inverse_on_surface">#ECF2ED</color>
+    <color name="md_inverse_primary">#93D7B3</color>
+    <color name="md_surface_bright">#F6FBF7</color>
+    <color name="md_surface_dim">#D6DBD7</color>
+    <color name="md_surface_container_lowest">#FFFFFF</color>
+    <color name="md_surface_container_low">#EFF5F0</color>
+    <color name="md_surface_container">#E9EFEA</color>
+    <color name="md_surface_container_high">#E3EAE4</color>
+    <color name="md_surface_container_highest">#DEE4DF</color>
+
+    <!-- Cards -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_stroke">#DCE4DD</color>
+
+    <!-- Expiry status pairs: always shown together with text, never colour alone. -->
+    <color name="status_expired_bg">#FFDAD6</color>
+    <color name="status_expired_fg">#93000A</color>
+    <color name="status_expired_edge">#BA1A1A</color>
+    <color name="status_soon_bg">#FFE6B0</color>
+    <color name="status_soon_fg">#6A4300</color>
+    <color name="status_soon_edge">#E0A21A</color>
+    <color name="status_fresh_bg">#C8EFD6</color>
+    <color name="status_fresh_fg">#0E5132</color>
+    <color name="status_fresh_edge">#2E7D5B</color>
+    <color name="status_neutral_bg">#E3EAE4</color>
+    <color name="status_neutral_fg">#404943</color>
+
+    <!-- Expiring-soon banner -->
+    <color name="banner_bg">#FFEFC9</color>
+    <color name="banner_title">#3D2800</color>
+    <color name="banner_body">#5C4000</color>
+    <color name="banner_icon">#8A5A00</color>
+    <color name="banner_stroke">#7A5B1F</color>
+
+    <!-- Swipe to delete -->
+    <color name="swipe_delete_bg">#BA1A1A</color>
+    <color name="swipe_delete_fg">#FFFFFF</color>
+
+    <!-- Launcher icon -->
+    <color name="ic_launcher_background">#2E7D5B</color>
+</resources>

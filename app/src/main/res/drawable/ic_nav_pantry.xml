@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Filled icon for the selected tab, outlined otherwise (Material 3 navigation bar). -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_kitchen_filled" android:state_checked="true" />
+    <item android:drawable="@drawable/ic_kitchen" />
+</selector>

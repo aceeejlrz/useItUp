@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material 3 colour roles, dark theme. -->
+    <color name="md_primary">#93D7B3</color>
+    <color name="md_on_primary">#00382A</color>
+    <color name="md_primary_container">#0B5139</color>
+    <color name="md_on_primary_container">#B7F0D2</color>
+    <color name="md_secondary">#B4CCBD</color>
+    <color name="md_on_secondary">#1F352A</color>
+    <color name="md_secondary_container">#34493E</color>
+    <color name="md_on_secondary_container">#CFE9DA</color>
+    <color name="md_tertiary">#A5CCE0</color>
+    <color name="md_on_tertiary">#073543</color>
+    <color name="md_tertiary_container">#244C5B</color>
+    <color name="md_on_tertiary_container">#C1E8FC</color>
+    <color name="md_error">#FFB4AB</color>
+    <color name="md_on_error">#690005</color>
+    <color name="md_error_container">#93000A</color>
+    <color name="md_on_error_container">#FFDAD6</color>
+    <color name="md_background">#0F1512</color>
+    <color name="md_on_background">#DEE4DF</color>
+    <color name="md_surface">#0F1512</color>
+    <color name="md_on_surface">#DEE4DF</color>
+    <color name="md_surface_variant">#404943</color>
+    <color name="md_on_surface_variant">#BFC9C1</color>
+    <color name="md_outline">#89938C</color>
+    <color name="md_outline_variant">#404943</color>
+    <color name="md_inverse_surface">#DEE4DF</color>
+    <color name="md_inverse_on_surface">#2C322E</color>
+    <color name="md_inverse_primary">#2E7D5B</color>
+    <color name="md_surface_bright">#353B37</color>
+    <color name="md_surface_dim">#0F1512</color>
+    <color name="md_surface_container_lowest">#0A0F0D</color>
+    <color name="md_surface_container_low">#171D1A</color>
+    <color name="md_surface_container">#1B211E</color>
+    <color name="md_surface_container_high">#252B28</color>
+    <color name="md_surface_container_highest">#303633</color>
+
+    <color name="card_background">#171D1A</color>
+    <color name="card_stroke">#2A312D</color>
+
+    <color name="status_expired_bg">#93000A</color>
+    <color name="status_expired_fg">#FFDAD6</color>
+    <color name="status_expired_edge">#FFB4AB</color>
+    <color name="status_soon_bg">#5C3F00</color>
+    <color name="status_soon_fg">#FFDEA6</color>
+    <color name="status_soon_edge">#F5BF48</color>
+    <color name="status_fresh_bg">#0E5132</color>
+    <color name="status_fresh_fg">#B7F0D2</color>
+    <color name="status_fresh_edge">#93D7B3</color>
+    <color name="status_neutral_bg">#303633</color>
+    <color name="status_neutral_fg">#BFC9C1</color>
+
+    <color name="banner_bg">#3A2E10</color>
+    <color name="banner_title">#FFDEA6</color>
+    <color name="banner_body">#EBCB8A</color>
+    <color name="banner_icon">#F5BF48</color>
+    <color name="banner_stroke">#C9A65C</color>
+
+    <color name="swipe_delete_bg">#93000A</color>
+    <color name="swipe_delete_fg">#FFDAD6</color>
+
+    <color name="ic_launcher_background">#2E7D5B</color>
+</resources>

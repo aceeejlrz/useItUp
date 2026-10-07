@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="units">
+        <item>pcs</item>
+        <item>g</item>
+        <item>kg</item>
+        <item>mL</item>
+        <item>L</item>
+        <item>pack</item>
+    </string-array>
+
+    <!-- Stored values; the order matches the filter chips on the Pantry screen. -->
+    <string-array name="categories">
+        <item>Produce</item>
+        <item>Dairy</item>
+        <item>Meat &amp; Fish</item>
+        <item>Bakery</item>
+        <item>Pantry staples</item>
+        <item>Frozen</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="alert_window_entries">
+        <item>1 day before expiry</item>
+        <item>2 days before expiry</item>
+        <item>3 days before expiry</item>
+        <item>4 days before expiry</item>
+        <item>5 days before expiry</item>
+        <item>6 days before expiry</item>
+        <item>7 days before expiry</item>
+    </string-array>
+
+    <string-array name="alert_window_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+</resources>

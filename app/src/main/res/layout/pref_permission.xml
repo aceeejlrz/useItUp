@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Custom row for PermissionPreference; laid out like a standard preference. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:minHeight="72dp"
+    android:orientation="horizontal"
+    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd">
+
+    <ImageView
+        android:id="@android:id/icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="32dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_notifications" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingVertical="12dp">
+
+        <TextView
+            android:id="@android:id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/permission_allowed"
+            style="@style/Widget.Material3.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:text="@string/permission_allowed"
+            android:textColor="@color/status_fresh_fg"
+            app:chipBackgroundColor="@color/status_fresh_bg"
+            app:chipIcon="@drawable/ic_check"
+            app:chipIconTint="@color/status_fresh_fg"
+            app:chipMinHeight="28dp"
+            app:chipStrokeWidth="0dp"
+            app:ensureMinTouchTargetSize="false" />
+
+        <TextView
+            android:id="@+id/permission_blocked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/permission_blocked"
+            android:textAppearance="?attr/textAppearanceTitleSmall"
+            android:textColor="@color/status_soon_fg"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/manage_outlined"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/manage" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/manage_filled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/manage"
+        android:visibility="gone" />
+</LinearLayout>

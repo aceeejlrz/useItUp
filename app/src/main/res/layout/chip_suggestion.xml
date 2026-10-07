@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Amber "expiring soon" suggestion: tap to add the item to the recipe search. -->
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Material3.Chip.Suggestion"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@color/status_soon_fg"
+    app:chipBackgroundColor="@color/status_soon_bg"
+    app:chipIcon="@drawable/ic_add"
+    app:chipIconTint="@color/status_soon_fg"
+    app:chipIconVisible="true"
+    app:chipStrokeWidth="0dp" />
