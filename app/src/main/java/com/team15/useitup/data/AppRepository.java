@@ -154,6 +154,7 @@ public final class AppRepository {
         return recipes;
     }
 
+    /** A sample recipe, or a TheMealDB recipe from a search or lookup in this session. */
     @Nullable
     public Recipe findRecipe(@Nullable String id) {
         for (Recipe recipe : recipes) {
@@ -161,7 +162,7 @@ public final class AppRepository {
                 return recipe;
             }
         }
-        return null;
+        return RecipeRepository.get().find(id);
     }
 
     @NonNull
