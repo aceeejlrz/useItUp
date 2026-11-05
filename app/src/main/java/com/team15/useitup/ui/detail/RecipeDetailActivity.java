@@ -18,6 +18,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 import com.team15.useitup.R;
 import com.team15.useitup.data.AppRepository;
@@ -65,7 +66,14 @@ public class RecipeDetailActivity extends AppCompatActivity {
         }
         SystemBars.padBottom(binding.scroll);
 
-        binding.hero.setImageResource(recipe.getHeroRes());
+        if (recipe.getImageUrl() != null) {
+            Glide.with(this).load(recipe.getImageUrl())
+                    .placeholder(R.color.md_surface_variant)
+                    .error(R.color.md_surface_variant)
+                    .into(binding.hero);
+        } else {
+            binding.hero.setImageResource(recipe.getHeroRes());
+        }
         binding.hero.setContentDescription(recipe.getName());
         binding.title.setText(recipe.getName());
         binding.meta.setText(getString(R.string.recipe_meta, recipe.getArea(), recipe.getCategory()));
