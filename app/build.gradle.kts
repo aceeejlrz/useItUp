@@ -45,8 +45,10 @@ dependencies {
     implementation(libs.androidx.preference)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.androidx.work.runtime)
     implementation(libs.material)
     testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.work.testing)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
