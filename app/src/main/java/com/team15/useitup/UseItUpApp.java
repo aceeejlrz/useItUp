@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.preference.PreferenceManager;
 
 import com.team15.useitup.util.NotificationHelper;
+import com.team15.useitup.worker.ReminderScheduler;
 
 /** Application entry point. Sets up app-wide services before any screen opens. */
 public class UseItUpApp extends Application {
@@ -16,5 +17,6 @@ public class UseItUpApp extends Application {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         // The "Expiry alerts" channel must exist before the first reminder is posted.
         NotificationHelper.createChannel(this);
+        ReminderScheduler.schedule(this, false);
     }
 }
