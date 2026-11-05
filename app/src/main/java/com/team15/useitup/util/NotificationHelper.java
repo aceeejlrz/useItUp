@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Build;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -77,11 +78,17 @@ public final class NotificationHelper {
      *
      * @return false if nothing expires soon or notifications are not allowed
      */
-    @SuppressLint("MissingPermission")
+
+    @MainThread
     public static boolean postExpiryReminder(@NonNull Context context) {
+        return postExpiryReminder(context, AppRepository.get().currentPantry());
+    }
+
+    @SuppressLint("MissingPermission")
+    public static boolean postExpiryReminder(@NonNull Context context,
+                                             @NonNull List<PantryItem> pantry) {
         int alertDays = AppPrefs.alertDays(context);
-        List<PantryItem> soon = expiringSoon(AppRepository.get().currentPantry(), alertDays,
-                LocalDate.now());
+        List<PantryItem> soon = expiringSoon(pantry, alertDays, LocalDate.now());
         if (soon.isEmpty() || !canPost(context)) {
             return false;
         }
