@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.team15.useitup.R;
 import com.team15.useitup.data.Recipe;
 import com.team15.useitup.databinding.ItemRecipeBinding;
@@ -83,7 +84,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         Context context = b.getRoot().getContext();
         Recipe recipe = card.recipe;
 
-        b.image.setImageResource(recipe.getImageRes());
+        if (recipe.getImageUrl() != null) {
+            Glide.with(b.image).load(recipe.getImageUrl())
+                    .placeholder(R.color.md_surface_variant)
+                    .error(R.color.md_surface_variant)
+                    .into(b.image);
+        } else {
+            Glide.with(b.image).clear(b.image);
+            b.image.setImageResource(recipe.getImageRes());
+        }
         b.name.setText(recipe.getName());
         b.savedMark.setVisibility(card.savedTab ? View.VISIBLE : View.GONE);
         if (card.savedTab) {
