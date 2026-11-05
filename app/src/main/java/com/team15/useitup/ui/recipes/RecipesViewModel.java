@@ -1,8 +1,6 @@
 package com.team15.useitup.ui.recipes;
 
 import android.app.Application;
-import android.os.Handler;
-import android.os.Looper;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -13,6 +11,7 @@ import com.team15.useitup.data.AppRepository;
 import com.team15.useitup.data.PantryItem;
 import com.team15.useitup.data.Recipe;
 import com.team15.useitup.data.RecipeIngredient;
+import com.team15.useitup.data.RecipeRepository;
 import com.team15.useitup.util.AppPrefs;
 import com.team15.useitup.util.IngredientMatcher;
 import com.team15.useitup.util.Network;
@@ -25,8 +24,8 @@ import java.util.List;
 
 /**
  * Recipes screen state. Shared with MainActivity so the Pantry's "Find recipes" can fill in
- * the search. The prototype searches the sample recipes after a short delay that stands in
- * for the TheMealDB requests (one filter request per ingredient, merged and ranked).
+ * the search. Searches TheMealDB through {@link RecipeRepository}; if a request fails the
+ * sample recipes are searched instead so the screen still shows something useful.
  */
 public class RecipesViewModel extends AndroidViewModel {
 
@@ -70,12 +69,9 @@ public class RecipesViewModel extends AndroidViewModel {
         }
     }
 
-    private static final long SIMULATED_NETWORK_MS = 700;
-
     private final AppRepository repository = AppRepository.get();
+    private final RecipeRepository recipeRepository = RecipeRepository.get();
     private final MediatorLiveData<State> state = new MediatorLiveData<>();
-    private final Handler handler = new Handler(Looper.getMainLooper());
-    private final Runnable finishSearch = this::finishSearch;
     private final List<String> ingredients = new ArrayList<>();
     @NonNull private Tab tab = Tab.SEARCH;
     @NonNull private Mode mode = Mode.PROMPT;
@@ -145,7 +141,7 @@ public class RecipesViewModel extends AndroidViewModel {
     }
 
     private void startSearch() {
-        handler.removeCallbacks(finishSearch);
+        recipeRepository.cancelSearch();
         if (ingredients.isEmpty()) {
             mode = Mode.PROMPT;
             results = Collections.emptyList();
@@ -154,20 +150,35 @@ public class RecipesViewModel extends AndroidViewModel {
             results = Collections.emptyList();
         } else {
             mode = Mode.LOADING;
-            handler.postDelayed(finishSearch, SIMULATED_NETWORK_MS);
+            List<String> searched = new ArrayList<>(ingredients);
+            recipeRepository.search(searched, new RecipeRepository.SearchCallback() {
+                @Override
+                public void onResult(@NonNull List<RecipeRepository.Match> matches) {
+                    List<Card> cards = new ArrayList<>();
+                    for (RecipeRepository.Match match : matches) {
+                        cards.add(new Card(match.recipe, match.matchCount, searched.size(), false));
+                    }
+                    finishSearch(cards);
+                }
+
+                @Override
+                public void onError() {
+                    finishSearch(matchSamples(searched));
+                }
+            });
         }
         publish();
     }
 
-    private void finishSearch() {
-        results = match(ingredients);
+    private void finishSearch(@NonNull List<Card> cards) {
+        results = cards;
         mode = results.isEmpty() ? Mode.EMPTY : Mode.RESULTS;
         publish();
     }
 
-    /** Recipes that use at least one searched ingredient, best matches first. */
+    /** Sample recipes that use at least one searched ingredient, best matches first. */
     @NonNull
-    private List<Card> match(@NonNull List<String> searched) {
+    private List<Card> matchSamples(@NonNull List<String> searched) {
         List<Card> cards = new ArrayList<>();
         for (Recipe recipe : repository.getRecipes()) {
             List<String> names = new ArrayList<>();
@@ -214,6 +225,6 @@ public class RecipesViewModel extends AndroidViewModel {
 
     @Override
     protected void onCleared() {
-        handler.removeCallbacks(finishSearch);
+        recipeRepository.cancelSearch();
     }
 }

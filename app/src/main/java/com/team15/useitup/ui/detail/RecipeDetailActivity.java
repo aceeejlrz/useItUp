@@ -18,11 +18,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 import com.team15.useitup.R;
 import com.team15.useitup.data.AppRepository;
 import com.team15.useitup.data.Recipe;
 import com.team15.useitup.data.RecipeIngredient;
+import com.team15.useitup.data.RecipeRepository;
 import com.team15.useitup.databinding.ActivityRecipeDetailBinding;
 import com.team15.useitup.databinding.ItemIngredientBinding;
 import com.team15.useitup.databinding.ItemStepBinding;
@@ -32,7 +34,10 @@ import com.team15.useitup.util.SystemBars;
 
 import java.util.List;
 
-/** A full recipe and which of its ingredients are already in the pantry. */
+/**
+ * A full recipe and which of its ingredients are already in the pantry. TheMealDB search
+ * results only have a name and photo, so their ingredients and steps are looked up here.
+ */
 public class RecipeDetailActivity extends AppCompatActivity {
 
     private static final String EXTRA_RECIPE_ID = "com.team15.useitup.extra.RECIPE_ID";
@@ -40,6 +45,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
     private ActivityRecipeDetailBinding binding;
     private final AppRepository repository = AppRepository.get();
     private Recipe recipe;
+    /** False until the ingredients and steps are known (TheMealDB lookup still running). */
+    private boolean detailsShown;
 
     @NonNull
     public static Intent intent(@NonNull Context context, @NonNull String recipeId) {
@@ -65,19 +72,66 @@ public class RecipeDetailActivity extends AppCompatActivity {
         }
         SystemBars.padBottom(binding.scroll);
 
-        binding.hero.setImageResource(recipe.getHeroRes());
+        if (recipe.getImageUrl() != null) {
+            Glide.with(this).load(recipe.getImageUrl())
+                    .placeholder(R.color.md_surface_variant)
+                    .error(R.color.md_surface_variant)
+                    .into(binding.hero);
+        } else {
+            binding.hero.setImageResource(recipe.getHeroRes());
+        }
         binding.hero.setContentDescription(recipe.getName());
         binding.title.setText(recipe.getName());
-        binding.meta.setText(getString(R.string.recipe_meta, recipe.getArea(), recipe.getCategory()));
+        binding.source.setText(recipe.getImageUrl() != null
+                ? R.string.recipe_source_mealdb : R.string.recipe_source);
         binding.watchVideo.setOnClickListener(v -> openVideo());
         binding.addMissing.setOnClickListener(v -> addMissing());
         binding.viewList.setOnClickListener(v -> openShoppingList());
-        renderSteps();
 
         // Re-check In pantry / Missing whenever the pantry or the shopping list changes.
         repository.getPantryItems().observe(this, items -> renderIngredients());
         repository.getShoppingItems().observe(this, items -> renderIngredients());
         repository.getSavedRecipeIds().observe(this, ids -> invalidateOptionsMenu());
+
+        if (RecipeRepository.get().needsDetails(recipe.getId())) {
+            loadDetails();
+        } else {
+            showDetails();
+        }
+    }
+
+    private void showDetails() {
+        detailsShown = true;
+        binding.meta.setText(getString(R.string.recipe_meta, recipe.getArea(), recipe.getCategory()));
+        renderSteps();
+        renderIngredients();
+    }
+
+    private void loadDetails() {
+        binding.inPantryCount.setText(R.string.recipe_loading);
+        binding.addMissing.setVisibility(View.GONE);
+        RecipeRepository.get().loadDetails(recipe.getId(), new RecipeRepository.DetailsCallback() {
+            @Override
+            public void onResult(@NonNull Recipe full) {
+                if (isDestroyed()) {
+                    return;
+                }
+                recipe = full;
+                showDetails();
+            }
+
+            @Override
+            public void onError() {
+                if (isDestroyed()) {
+                    return;
+                }
+                binding.inPantryCount.setText(R.string.recipe_load_failed);
+                Snackbar.make(binding.coordinator, R.string.recipe_load_failed_body,
+                                Snackbar.LENGTH_INDEFINITE)
+                        .setAction(R.string.retry, v -> loadDetails())
+                        .show();
+            }
+        });
     }
 
     @Override
@@ -119,6 +173,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
     }
 
     private void renderIngredients() {
+        if (!detailsShown) {
+            return;
+        }
         List<String> pantryNames = repository.pantryNames();
         LayoutInflater inflater = getLayoutInflater();
         binding.ingredients.removeAllViews();
