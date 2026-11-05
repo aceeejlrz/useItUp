@@ -152,6 +152,10 @@
     <string name="view_list">View list</string>
     <string name="instructions_header">Instructions</string>
     <string name="recipe_source">Sample recipe for the prototype. The app will load recipes from TheMealDB.</string>
+    <string name="recipe_source_mealdb">Recipe and photo from TheMealDB.</string>
+    <string name="recipe_loading">Loading…</string>
+    <string name="recipe_load_failed">Couldn’t load ingredients</string>
+    <string name="recipe_load_failed_body">Couldn’t load this recipe. Check your connection.</string>
 
     <!-- Shopping list -->
     <string name="shopping_title">Shopping list</string>
