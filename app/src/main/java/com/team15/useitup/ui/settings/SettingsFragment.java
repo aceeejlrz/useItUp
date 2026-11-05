@@ -2,6 +2,7 @@ package com.team15.useitup.ui.settings;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -25,6 +27,7 @@ import com.team15.useitup.R;
 import com.team15.useitup.util.AppPrefs;
 import com.team15.useitup.util.NotificationHelper;
 import com.team15.useitup.util.SystemBars;
+import com.team15.useitup.worker.ReminderScheduler;
 
 /** The preference list. Values are stored in the default SharedPreferences (see AppPrefs). */
 public class SettingsFragment extends PreferenceFragmentCompat {
@@ -113,7 +116,23 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         super.onResume();
         // The user may come back from the system notification settings.
         updatePermission();
+        PreferenceManager.getDefaultSharedPreferences(requireContext())
+                .registerOnSharedPreferenceChangeListener(prefsListener);
     }
+
+    @Override
+    public void onPause() {
+        PreferenceManager.getDefaultSharedPreferences(requireContext())
+                .unregisterOnSharedPreferenceChangeListener(prefsListener);
+        super.onPause();
+    }
+
+    private final SharedPreferences.OnSharedPreferenceChangeListener prefsListener =
+            (prefs, key) -> {
+                if (AppPrefs.KEY_REMINDERS.equals(key) || AppPrefs.KEY_REMINDER_HOUR.equals(key)) {
+                    ReminderScheduler.schedule(requireContext(), true);
+                }
+            };
 
     private void updatePermission() {
         if (permissionPreference != null && isAdded()) {
