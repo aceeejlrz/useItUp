@@ -78,7 +78,6 @@ public final class NotificationHelper {
      *
      * @return false if nothing expires soon or notifications are not allowed
      */
-
     @MainThread
     public static boolean postExpiryReminder(@NonNull Context context) {
         return postExpiryReminder(context, AppRepository.get().currentPantry());
