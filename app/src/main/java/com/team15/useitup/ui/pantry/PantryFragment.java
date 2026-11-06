@@ -1,12 +1,19 @@
 package com.team15.useitup.ui.pantry;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
@@ -16,6 +23,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.Chip;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.team15.useitup.R;
 import com.team15.useitup.data.PantryItem;
@@ -24,6 +32,8 @@ import com.team15.useitup.ui.common.SwipeToDeleteCallback;
 import com.team15.useitup.ui.item.AddEditItemActivity;
 import com.team15.useitup.ui.main.MainActivity;
 import com.team15.useitup.ui.settings.SettingsActivity;
+import com.team15.useitup.util.AppPrefs;
+import com.team15.useitup.util.NotificationHelper;
 
 import java.util.Collections;
 import java.util.List;
@@ -36,6 +46,22 @@ public class PantryFragment extends Fragment {
     private PantryViewModel viewModel;
     private PantryAdapter adapter;
     @NonNull private List<String> bannerIngredients = Collections.emptyList();
+
+    // Registered as fields so they exist before the fragment starts, as the API requires.
+    private final ActivityResultLauncher<Intent> addItemLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    maybeAskForNotifications();
+                }
+            });
+
+    private final ActivityResultLauncher<String> notificationPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {
+                if (!granted && binding != null) {
+                    Snackbar.make(binding.coordinator, R.string.notification_prompt_denied,
+                            Snackbar.LENGTH_LONG).show();
+                }
+            });
 
     @Nullable
     @Override
@@ -67,7 +93,7 @@ public class PantryFragment extends Fragment {
         setUpSwipeToDelete();
 
         binding.fab.setOnClickListener(v ->
-                startActivity(AddEditItemActivity.intentForAdd(requireContext())));
+                addItemLauncher.launch(AddEditItemActivity.intentForAdd(requireContext())));
         binding.bannerFindRecipes.setOnClickListener(v -> openRecipes(bannerIngredients));
 
         viewModel.getState().observe(getViewLifecycleOwner(), this::render);
@@ -84,6 +110,30 @@ public class PantryFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    /**
+     * Asks for notification permission (Android 13+) right after the user adds an item, the
+     * first moment a reminder is useful to them. Shown at most once; after that the user can
+     * still allow notifications from Settings.
+     */
+    private void maybeAskForNotifications() {
+        Context context = requireContext();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
+                || NotificationHelper.canPost(context)
+                || !AppPrefs.remindersEnabled(context)
+                || AppPrefs.notificationPromptShown(context)) {
+            return;
+        }
+        AppPrefs.setNotificationPromptShown(context);
+        new MaterialAlertDialogBuilder(context)
+                .setIcon(R.drawable.ic_notifications)
+                .setTitle(R.string.notification_prompt_title)
+                .setMessage(R.string.permission_rationale)
+                .setPositiveButton(R.string.notification_prompt_allow, (dialog, which) ->
+                        notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS))
+                .setNegativeButton(R.string.notification_prompt_not_now, null)
+                .show();
     }
 
     private void setUpToolbar() {
