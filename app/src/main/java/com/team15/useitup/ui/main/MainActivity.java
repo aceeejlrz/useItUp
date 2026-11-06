@@ -15,6 +15,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.team15.useitup.R;
+import com.google.android.material.snackbar.Snackbar;
+import com.team15.useitup.data.AppRepository;
 import com.team15.useitup.databinding.ActivityMainBinding;
 import com.team15.useitup.ui.pantry.PantryFragment;
 import com.team15.useitup.ui.recipes.RecipesFragment;
@@ -53,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        AppRepository.get().getStorageErrors().observe(this, error ->
+                Snackbar.make(binding.getRoot(), R.string.storage_save_failed,
+                        Snackbar.LENGTH_INDEFINITE).show());
         recipesViewModel = new ViewModelProvider(this).get(RecipesViewModel.class);
 
         if (savedInstanceState == null) {

@@ -1,8 +1,6 @@
 package com.team15.useitup.worker;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -17,8 +15,6 @@ import com.team15.useitup.util.NotificationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.TimeUnit;
 
 //Daily background check. Reads the pantry and, if anything expires inside the alert window,
 //posts one summary notification. Tapping it opens the Pantry tab.
@@ -55,13 +51,10 @@ public class ExpiryCheckWorker extends Worker {
         return Result.success();
     }
 
-    //AppRepository is in-memory and main-thread only for now.
+    // get() waits for the Room cache on this worker thread, even without an Activity.
     @WorkerThread
     @NonNull
-    private List<PantryItem> loadPantry() throws Exception {
-        FutureTask<List<PantryItem>> task = new FutureTask<>(
-                () -> new ArrayList<>(AppRepository.get().currentPantry()));
-        new Handler(Looper.getMainLooper()).post(task);
-        return task.get(10, TimeUnit.SECONDS);
+    private List<PantryItem> loadPantry() {
+        return new ArrayList<>(AppRepository.get().currentPantry());
     }
 }

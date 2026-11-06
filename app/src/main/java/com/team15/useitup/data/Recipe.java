@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,8 +48,8 @@ public final class Recipe {
         this.imageRes = imageRes;
         this.heroRes = heroRes;
         this.imageUrl = imageUrl;
-        this.ingredients = Collections.unmodifiableList(ingredients);
-        this.steps = Collections.unmodifiableList(steps);
+        this.ingredients = Collections.unmodifiableList(new ArrayList<>(ingredients));
+        this.steps = Collections.unmodifiableList(new ArrayList<>(steps));
     }
 
     @NonNull

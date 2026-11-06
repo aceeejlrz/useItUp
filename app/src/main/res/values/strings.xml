@@ -218,4 +218,5 @@
         <item quantity="other">%d days</item>
     </plurals>
     <string name="notif_text">%s – tap to find recipes</string>
+    <string name="storage_save_failed">Changes could not be saved. Check available storage and try again.</string>
 </resources>
