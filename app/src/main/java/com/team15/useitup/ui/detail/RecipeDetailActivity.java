@@ -64,6 +64,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
         }
         binding = ActivityRecipeDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        repository.getStorageErrors().observe(this, error ->
+                Snackbar.make(binding.getRoot(), R.string.storage_save_failed,
+                        Snackbar.LENGTH_INDEFINITE).show());
         setSupportActionBar(binding.toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -93,7 +96,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         repository.getShoppingItems().observe(this, items -> renderIngredients());
         repository.getSavedRecipeIds().observe(this, ids -> invalidateOptionsMenu());
 
-        if (RecipeRepository.get().needsDetails(recipe.getId())) {
+        if (!repository.isSaved(recipe.getId()) && RecipeRepository.get().needsDetails(recipe.getId())) {
             loadDetails();
         } else {
             showDetails();
@@ -102,6 +105,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
     private void showDetails() {
         detailsShown = true;
+        invalidateOptionsMenu();
         binding.meta.setText(getString(R.string.recipe_meta, recipe.getArea(), recipe.getCategory()));
         renderSteps();
         renderIngredients();
@@ -144,6 +148,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem save = menu.findItem(R.id.action_save);
         boolean saved = repository.isSaved(recipe.getId());
+        save.setEnabled(saved || (detailsShown && !recipe.getIngredients().isEmpty()
+                && !recipe.getSteps().isEmpty()));
         save.setIcon(saved ? R.drawable.ic_bookmark_filled : R.drawable.ic_bookmark);
         save.setTitle(saved ? R.string.unsave_recipe : R.string.save_recipe);
         if (save.getIcon() != null) {
@@ -158,7 +164,14 @@ public class RecipeDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_save) {
             boolean saved = !repository.isSaved(recipe.getId());
-            repository.setSaved(recipe.getId(), saved);
+            if (saved) {
+                if (!detailsShown || recipe.getIngredients().isEmpty() || recipe.getSteps().isEmpty()) {
+                    return true;
+                }
+                repository.saveRecipe(recipe);
+            } else {
+                repository.setSaved(recipe.getId(), false);
+            }
             Snackbar.make(binding.coordinator, saved ? R.string.recipe_saved : R.string.recipe_unsaved,
                     Snackbar.LENGTH_SHORT).show();
             return true;
