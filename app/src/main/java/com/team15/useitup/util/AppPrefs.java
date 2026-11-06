@@ -20,6 +20,7 @@ public final class AppPrefs {
     public static final String KEY_PERMISSION = "notification_permission";
     public static final String KEY_TEST_REMINDER = "test_reminder";
     public static final String KEY_VERSION = "about_version";
+    public static final String KEY_NOTIFICATION_PROMPT_SHOWN = "notification_prompt_shown";
 
     public static final int DEFAULT_ALERT_DAYS = 3;
     public static final int DEFAULT_REMINDER_HOUR = 18;
@@ -53,6 +54,14 @@ public final class AppPrefs {
 
     public static void setReminderHour(@NonNull Context context, int hour) {
         prefs(context).edit().putInt(KEY_REMINDER_HOUR, hour).apply();
+    }
+
+    public static boolean notificationPromptShown(@NonNull Context context) {
+        return prefs(context).getBoolean(KEY_NOTIFICATION_PROMPT_SHOWN, false);
+    }
+
+    public static void setNotificationPromptShown(@NonNull Context context) {
+        prefs(context).edit().putBoolean(KEY_NOTIFICATION_PROMPT_SHOWN, true).apply();
     }
 
     /** "6:00 PM" (or "18:00", following the locale). */

@@ -204,6 +204,10 @@
         <item quantity="other">Nothing expires within %d days.</item>
     </plurals>
     <string name="permission_rationale">Allow notifications to get a reminder before food expires.</string>
+    <string name="notification_prompt_title">Get expiry reminders?</string>
+    <string name="notification_prompt_allow">Allow</string>
+    <string name="notification_prompt_not_now">Not now</string>
+    <string name="notification_prompt_denied">No reminders for now. You can turn them on in Settings.</string>
     <string name="select_time">Select reminder time</string>
 
     <!-- Notifications -->

@@ -29,6 +29,7 @@
             app:title="@string/pref_time_title" />
 
         <com.team15.useitup.ui.settings.PermissionPreference
+            app:icon="@drawable/ic_notifications_off"
             app:key="notification_permission"
             app:title="@string/pref_permission_title" />
 
