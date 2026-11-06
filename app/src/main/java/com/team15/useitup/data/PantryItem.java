@@ -1,14 +1,18 @@
 package com.team15.useitup.data;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Objects;
 
-/** One food item in the pantry. Mirrors the planned Room entity {@code pantry_items}. */
+/** One persisted food item in the pantry. */
+@Entity(tableName = "pantry_items")
 public final class PantryItem {
 
+    @PrimaryKey
     private final long id;
     @NonNull private final String name;
     private final double quantity;
