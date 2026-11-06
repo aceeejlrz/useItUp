@@ -230,6 +230,8 @@ public class AddEditItemActivity extends AppCompatActivity {
                     expiry, editing.getAddedDate()));
         } else {
             repository.addPantryItem(name, quantity, unit, category, expiry);
+            // Lets the Pantry screen know a new item was added (it may ask for notifications).
+            setResult(RESULT_OK);
         }
         finish();
     }
