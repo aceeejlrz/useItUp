@@ -2,12 +2,16 @@ package com.team15.useitup.data;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.util.Objects;
 
-/** One line on the shopping list. Mirrors the planned Room entity {@code shopping_items}. */
+/** One persisted line on the shopping list. */
+@Entity(tableName = "shopping_items")
 public final class ShoppingItem {
 
+    @PrimaryKey
     private final long id;
     @NonNull private final String name;
     @Nullable private final String quantityNote;
